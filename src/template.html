@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{{TITLE}}</title><style>{{CSS}}</style></head>
+<body>
+<div id="stage"><main id="slides" role="main">{{SLIDES}}</main></div>
+<div id="toolbar" aria-label="슬라이드 조작">
+ <button data-action="prev" title="이전">◀</button><span><b id="current-slide">1</b> / <span id="total-slides">0</span></span>
+ <button data-action="next" title="다음">▶</button><button data-action="overview" title="전체보기 (O)">전체</button>
+ <button data-action="notes" title="발표자 노트 (N)">노트</button><button data-action="fullscreen" title="전체화면 (F)">전체화면</button>
+ <button data-action="print" title="PDF 출력">PDF</button>
+</div>
+<div id="note-panel" hidden><strong>발표자 노트</strong><p id="notes-text"></p></div>
+<div id="progress"><div id="progress-fill"></div></div>
+<script>{{ENGINE}}</script></body></html>
