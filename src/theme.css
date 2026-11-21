@@ -1,0 +1,49 @@
+/* Neutral fallback theme. Replace for each presentation; institution-provided design takes precedence. */
+:root{--bg:#f5f8fc;--paper:#fff;--ink:#14253a;--muted:#66788e;--accent:#245dbe;--accent-light:#e9f0ff;--line:#dce4ee;--font:'Pretendard','Noto Sans KR','Malgun Gothic',system-ui,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;font-family:var(--font);background:#e5ebf2;color:var(--ink)}
+button{font:inherit;cursor:pointer}
+#stage{position:fixed;inset:0;display:grid;place-items:center;overflow:hidden}
+#slides{position:relative;width:min(96vw,167.1vh);max-height:94vh;aspect-ratio:16/9;background:var(--paper);overflow:hidden;box-shadow:0 20px 60px #182d4330}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;padding:4.8% 5.8%;background:var(--paper);font-size:clamp(13px,1.6vw,27px);overflow:hidden}
+.slide.active{display:flex}
+.slide:not(.cover)::after{content:'';position:absolute;bottom:0;left:0;right:0;height:0.55%;background:var(--accent)}
+.slide h1{font-size:2.65em;line-height:1.16;margin:.36em 0;letter-spacing:-.04em}
+.slide h2{font-size:1.7em;line-height:1.22;letter-spacing:-.035em;margin:.3em 0 .45em}
+.slide p{font-size:.82em;line-height:1.6}
+.slide .kicker{font-size:.65em;text-transform:uppercase;letter-spacing:.12em;font-weight:800;color:var(--accent)}
+.slide .sub{color:var(--muted);line-height:1.55}
+.slide .topline{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:.6em;margin-bottom:1em}
+.slide .topline span{font-size:.7em;color:var(--muted)}
+.slide .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1em}
+.slide .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:.7em}
+.slide .panel{padding:1em;background:var(--bg);border:1px solid var(--line);border-radius:.5em}
+.slide .panel p{font-size:.8em;color:var(--muted)}
+.slide .tag{display:inline-block;width:max-content;padding:.4em .8em;border-radius:1em;background:var(--accent-light);color:var(--accent);font-weight:700;font-size:.7em}
+.slide .foot{font-size:.66em;margin-top:auto;color:var(--muted)}
+.slide.cover{justify-content:center;background:linear-gradient(135deg,#102540,#214e84 70%,#2566ae);color:#fff}
+.slide.cover .kicker{color:#addaff}
+.slide.cover .sub{color:#e0eaf6}
+.slide.cover .tag{background:#ffffff25;color:#fff}
+.speaker-notes{display:none}
+#toolbar{position:fixed;z-index:30;bottom:12px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;background:#132941ed;color:#fff;padding:7px 10px;border-radius:12px;box-shadow:0 5px 18px #0004;font-size:13px}
+#toolbar button{background:transparent;color:#fff;border:1px solid #ffffff45;border-radius:6px;padding:5px 9px}
+#toolbar button:hover{background:#ffffff20}
+#progress{position:fixed;z-index:25;bottom:0;left:0;right:0;height:4px;background:#b5c6d8}
+#progress-fill{height:100%;width:0;background:#296bc7;transition:width .2s}
+#note-panel{position:fixed;z-index:35;right:14px;bottom:64px;max-width:420px;width:34vw;min-width:260px;background:#fff;border:1px solid var(--line);box-shadow:0 10px 30px #0003;border-radius:10px;padding:14px;font-size:14px}
+#note-panel[hidden]{display:none}
+#stage.overview{overflow:auto;display:block;padding:20px 20px 75px}
+#stage.overview #slides{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;overflow:visible;width:100%;max-height:none;aspect-ratio:auto;background:transparent;box-shadow:none}
+#stage.overview .slide{display:flex;position:relative;aspect-ratio:16/9;min-height:0;padding:5%;font-size:clamp(7px,1vw,13px);box-shadow:0 3px 12px #0003;cursor:pointer}
+#stage.overview .slide h1{font-size:2em}
+#stage.overview .slide h2{font-size:1.5em}
+@page{size:16in 9in;margin:0}
+@media print{
+html,body{background:white;width:auto;height:auto}
+#stage{display:block;position:static;overflow:visible}
+#slides{display:block;width:16in;height:auto;max-height:none;aspect-ratio:auto;box-shadow:none;overflow:visible}
+.slide,#stage.overview .slide{position:relative;display:flex;width:16in;height:9in;aspect-ratio:auto;page-break-after:always;break-after:page;font-size:26px;box-shadow:none}
+#toolbar,#progress,#note-panel{display:none!important}
+body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
