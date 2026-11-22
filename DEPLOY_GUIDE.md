@@ -1,8 +1,17 @@
-# GitHub Pages 배포 설정
+# GitHub Pages 배포 및 검수
 
-1. 저장소 `Settings → Pages`로 이동
-2. `Build and deployment`에서 `Deploy from a branch` 선택
-3. Branch `main`, Folder `/(root)` 선택 후 저장
-4. Pages URL: https://lim3d.github.io/html-presentation-kit/
+- 저장소: https://github.com/lim3d/html-presentation-kit
+- GitHub Pages: https://lim3d.github.io/html-presentation-kit/
+- 설정: Settings → Pages → Deploy from a branch → `main` / `/(root)`
+- 정본: `src/template.html`
+- Pages 페이지: `index.html`
 
-`index.html`은 공개 데모다. 새 발표자료는 해당 프로젝트용 별도 저장소 또는 로컬 파일로 관리.
+## 업데이트
+
+1. `src/template.html`의 HTML 코드 변경
+2. `python build.py` 실행 (index.html, dist/presentation.html 동기화)
+3. 변경된 파일 Git commit/push
+4. GitHub Actions의 `pages build and deployment` 성공 확인
+5. Pages URL에서 편집, 발표자, 청중 창, 슬라이드 PDF 기능 검수
+
+**경고:** 저장소가 Public이므로 사업보고서·고객자료·사내자료는 공개 배포 금지.
