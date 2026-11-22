@@ -1,32 +1,56 @@
 # HTML Presentation Kit
 
-**공통 발표 엔진 + 프로젝트별 자유 디자인**을 분리한 재사용형 HTML 발표 템플릿.
+ChatGPT · Codex · Antigravity가 함께 사용하는 **HTML 발표자료 공통 템플릿**입니다. 디자인을 고정하지 않고 편집·발표·내보내기 기능을 재사용합니다.
 
-- GitHub Pages 공개 데모: https://lim3d.github.io/html-presentation-kit/
-- 기능: 16:9, 키보드 이동, 전체화면(F), 전체보기(O), 발표자 노트(N), PDF 인쇄
-- Chrome/Edge에서 `index.html` 또는 `dist/presentation.html` 실행
-- 외부 라이브러리 없이 단일 HTML로 동작
+- 공개 데모: https://lim3d.github.io/html-presentation-kit/
+- GitHub 저장소: https://github.com/lim3d/html-presentation-kit
+- 기본 예제: 5장, 20분. 새 발표마다 자유롭게 변경
+- Chrome / Edge 권장, 외부 라이브러리·서버 없이 **단일 HTML 오프라인 실행**
 
-## 폴더 구조
+## 기능
 
-- `AI_GUIDE.md` — AI 공통 작성 규칙
-- `PROJECT_BRIEF.md` — 발표별 요구사항 입력
-- `slides.html` — 예제 슬라이드 HTML; 새 프로젝트마다 교체
-- `src/theme.css` — 프로젝트별 디자인; 기관 양식 우선
-- `src/engine.js` — 공통 발표 기능
-- `src/template.html` — HTML 빌드 틀
-- `build.py` — 오프라인 단일 HTML 생성
-- `dist/presentation.html` — 오프라인 발표용 완성 파일
-- `index.html` — GitHub Pages 공개 데모
+| 영역 | 주요 기능 |
+|---|---|
+| 편집 | 4개 탭(페이지·미디어, 배치·오브젝트, 사진 설명, 글꼴·텍스트), 페이지 추가/이동/삭제, 이미지 교체·드래그·크기 조절, 동영상, 텍스트 편집, HTML 저장 |
+| 발표자 화면 | 현재/다음 슬라이드, 발표 메모, 진행/남은 시간, 재생 컨트롤 |
+| 청중 화면 | 별도 팝업, 슬라이드 동기화, 청중에게 메모·편집 도구 노출 금지 |
+| 발표 시간 | 상단 **발표 시간** 입력란에서 1~600분 설정, HTML 저장 후에도 유지 |
+| PDF | **슬라이드 PDF 내보내기** → 브라우저 인쇄 → **PDF로 저장**, 16:9 모든 슬라이드 출력, 메모·타이머·편집 도구 제외 |
+| 기타 | 방향키, 전체 보기, 미디어 포함 HTML/ZIP 저장 |
 
-## 사용
-1. 발표별로 `PROJECT_BRIEF.md` 작성
-2. 첨부된 기관 디자인이나 발표 주제를 기준으로 `src/theme.css`와 `slides.html` 편집
-3. `python build.py` 실행
-4. `dist/presentation.html`을 발표에 사용
-5. 공개 데모 갱신 시 동일 내용으로 `index.html` 교체
+### PDF 내보내는 방법
 
-## PDF 출력
-Chrome에서 PDF 버튼 또는 Ctrl+P → PDF로 저장, 여백 없음, 배경 그래픽 인쇄, 머리글/바닥글 해제.
+1. 상단 **슬라이드 PDF 내보내기** 클릭
+2. 브라우저 인쇄 창에서 **대상: PDF로 저장**
+3. **여백: 없음**, **배경 그래픽: 켜기**, **머리글/바닥글: 해제**
+4. 저장 클릭
 
-**주의:** Pages에 올라간 파일은 공개된다. 실제 사업 증빙·고객자료·비공개 발표자료를 이 공개 저장소에 넣지 않는다.
+PDF는 브라우저의 인쇄 기능을 활용합니다. 버튼만으로 파일이 자동 다운로드되는 방식은 아닙니다. **슬라이드만** 출력되고 발표자 모드나 편집 UI는 포함되지 않습니다.
+
+### 발표자 모드
+
+**프레젠테이션 모드** 클릭 → 자동으로 열린 청중 창을 두 번째 모니터에 이동 → 청중 창의 **발표 시작** 클릭. Windows에서는 **Win+P → 확장** 사용. 팝업 차단 시 허용 후 다시 실행.
+
+### 편집 후 저장
+
+편집 화면 아래 **변경 내용 포함 HTML 저장** 클릭 → 내려받은 HTML을 다시 열어 계속 편집. 웹 데모의 변경은 GitHub 원본에 자동 반영되지 않습니다.
+
+## 저장소 구성
+
+- **`src/template.html`**: 기능 포함 정본 소스(편집 가능한 단일 HTML)
+- **`index.html`**: GitHub Pages 공개 데모
+- **`dist/presentation.html`**: 오프라인 배포용 사본
+- **`build.py`**: 정본 HTML을 위 두 위치로 동기화
+- `AI_GUIDE.md`: AI 제작 규칙 및 검수 기준
+- `PROJECT_BRIEF.md`: 발표별 입력 정보
+- `DEPLOY_GUIDE.md`: GitHub Pages 배포 방법
+
+`python build.py` 실행 시 `src/template.html`을 `index.html`과 `dist/presentation.html`에 복사합니다. 표준 Python만 필요합니다.
+
+## 디자인 원칙
+
+**기관 지정 디자인 우선 → 사용자 제공 브랜드 자료 → 발표 주제에 맞춘 디자인** 순서입니다. 디자인용 CSS는 발표마다 변경하되, 편집/발표자/청중/PDF 엔진은 유지합니다.
+
+## 공개 저장소 주의
+
+저장소와 GitHub Pages는 공개됩니다. 메타뱅크 내부 발표자료·계약서·시험 결과·고객 정보·개인정보 등은 **공개 저장소에 업로드하지 않습니다**. 실제 발표자료는 별도의 로컬 파일 또는 비공개 저장소에서 관리합니다.
